@@ -28,12 +28,14 @@
 		<script src = "dragondata.js"></script>
 		<script>
 			function initialize()
-			{
+			{   
+                dragonList = [];
 				mainImage = document.getElementById("mainimg");
 				captionOutput = document.getElementById("caption");
 				blurbOutput = document.getElementById("blurb");
 				
 				buildData();
+                alert(dragonList);
 				setThumbnails();
 				
 				display();
@@ -41,6 +43,19 @@
 			
 			function buildData()
 			{
+                var nameList = dragons.split(";");
+                var bioList = dragoninfo.split(";");
+                var dragonImageList = dragonimages.split(";");
+                for (i = 0; i < nameList.length; i++){
+                    var dragon = {};
+                    dragon.name = nameList[i];
+                    dragon.bio = bioList[i];
+                    dragon.image = dragonImageList[i];
+                    alert(dragon.bio);
+                    dragonList.push(dragon);
+                }
+                
+                
 			}
 			
 			function setThumbnails()
