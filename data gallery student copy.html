@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Transition Objects</title>
+		<style>
+			body
+			{
+				text-align:center;
+			}
+			
+			.thumb
+			{
+				width:12%;
+			}
+			
+			#mainimg
+			{
+				width:50%;
+			}
+			
+			#caption
+			{
+				font-size:24pt;
+				font-weight:bold;
+			}
+		</style>
+		
+		<script src = "dragondata.js"></script>
+		<script>
+			function initialize()
+			{
+				mainImage = document.getElementById("mainimg");
+				captionOutput = document.getElementById("caption");
+				blurbOutput = document.getElementById("blurb");
+				
+				buildData();
+				setThumbnails();
+				
+				display();
+			}
+			
+			function buildData()
+			{
+			}
+			
+			function setThumbnails()
+			{
+			}
+			
+			function display()
+			{
+			}
+		</script>
+	</head>
+		
+	<body onload = "initialize();">
+		<img id = "mainimg"  />
+		<div id = "caption"></div>
+		<div id = "blurb"></div>
+		<hr />
+		<img class = "thumb" />
+		<img class = "thumb" />
+		<img class = "thumb" />
+		<img class = "thumb" />
+		<img class = "thumb" />
+		<img class = "thumb" />
+	</body>
+</html>
