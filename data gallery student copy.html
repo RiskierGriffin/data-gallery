@@ -28,14 +28,15 @@
 		<script src = "dragondata.js"></script>
 		<script>
 			function initialize()
-			{   
-                dragonList = [];
+			{
 				mainImage = document.getElementById("mainimg");
 				captionOutput = document.getElementById("caption");
 				blurbOutput = document.getElementById("blurb");
 				
+                dragonList = [];
+                currentDragonIndex = 0;
+                
 				buildData();
-                alert(dragonList);
 				setThumbnails();
 				
 				display();
@@ -43,41 +44,62 @@
 			
 			function buildData()
 			{
-                var nameList = dragons.split(";");
-                var bioList = dragoninfo.split(";");
-                var dragonImageList = dragonimages.split(";");
-                for (i = 0; i < nameList.length; i++){
-                    var dragon = {};
-                    dragon.name = nameList[i];
-                    dragon.bio = bioList[i];
-                    dragon.image = dragonImageList[i];
-                    alert(dragon.bio);
-                    dragonList.push(dragon);
-                }
+                var dragonNames = dragons.split(";"); /*creates an array or strings at semicolons */
+                var dragonBlurbs = dragoninfo.split(";");
+                var dragonImageFiles = dragonimages.split(";");
+                
+                for (var i = 0; i < dragonNames.length; i++)
+                    {
+                        var dragon = {};
+                        dragon.dragonName = dragonNames[i];
+                        dragon.dragonBlurb = dragonBlurbs[i];
+                        dragon.dragonImage = dragonImageFiles[i];
+                        
+                        dragonList.push(dragon);
+                        
+                    }
                 
                 
 			}
 			
 			function setThumbnails()
 			{
+                var dragonThumbs = document.getElementsByClassName("thumb"); /*when you get elements by class or tag name, you are creating a list node, which is all of the elements that match that, kinda like an array */
+                var dragonImageFiles = dragonimages.split(";");
+                
+                for (var i = 0; i < dragonThumbs.length; i++)
+                    {
+                        dragonThumbs[i].src = "images/" + dragonImageFiles[i];
+                        
+                    }
+                
 			}
+            
+            function selectDragon(Index)
+            {
+                currentDragonIndex = Index;
+                display();
+            }
 			
 			function display()
 			{
+                mainImage.src = "images/" + dragonList[currentDragonIndex].dragonImage;
+                captionOutput.innerHTML = dragonList[currentDragonIndex].dragonName;
+                blurbOutput.innerHTML = dragonList[currentDragonIndex].dragonBlurb;
 			}
 		</script>
 	</head>
 		
 	<body onload = "initialize();">
-		<img id = "mainimg"  />
+		<img id = "mainimg"/>
 		<div id = "caption"></div>
 		<div id = "blurb"></div>
 		<hr />
-		<img class = "thumb" />
-		<img class = "thumb" />
-		<img class = "thumb" />
-		<img class = "thumb" />
-		<img class = "thumb" />
-		<img class = "thumb" />
+		<img class = "thumb" onclick = "selectDragon(0);"/>
+		<img class = "thumb" onclick = "selectDragon(1);"/>
+		<img class = "thumb" onclick = "selectDragon(2);"/>
+		<img class = "thumb" onclick = "selectDragon(3);"/>
+		<img class = "thumb" onclick = "selectDragon(4);"/>
+		<img class = "thumb" onclick = "selectDragon(5);"/>
 	</body>
 </html>
